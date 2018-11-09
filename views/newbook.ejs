@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>New Book</title>
+    <style media="screen">
+      *{
+        text-align:center;
+      }
+      div{
+        margin-top: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>New Book</h1>
+    <form action="/books" method="post">
+      <input type="text" name="name" placeholder="Title of book">
+      <input type="text" name="description" placeholder="Description of Book">
+      <input type="text" name="img_url" placeholder="img of url">
+      <select class="" name="author_id">
+        <% for(let i=0; i<authors.length; i++) { %>
+        <option value="<%= authors[i].id %>"> <%= authors[i].name %></option>
+        <% } %>
+      </select>
+      <input type="submit" name="" value="Submit">
+    </form>
+    <div class="">
+      <a href="/addAuthor">Add a author</a>
+    </div>
+  </body>
+</html>
