@@ -1,5 +1,4 @@
 const knex = require("../db/knex.js");
-
 module.exports = {
   // CHANGE ME TO AN ACTUAL FUNCTION
   index: function(req, res) {
@@ -24,9 +23,16 @@ module.exports = {
   addAuthor: (req,res)=> {
     res.render('createAuthor');
   },
-  discuss: (req,res) => {
-    knex('books').where("books.id", req.params.id).join('users',"book_id", "=","books.id" ).then((results)=>{
-      res.render('discuss', {users:results[0]})
-      })
-    }
+  // JOIN TABLES OF BOOKS/ USERS / AUTHORS TO PULL / NOT DONE
+  discuss: (req, res) => {
+    knex('books').where("books.id", req.params.id).join('users', 'books.id', "=", 'book_id' ).then((results) => {
+      res.render('discuss', {books: results})
+    })
+  },
+  users: (req, res) => {
+    knex('users').insert(req.body).then(
+      res.redirect(`/`));
+  }
+
+
 }

@@ -8,5 +8,5 @@ module.exports = function(app){
   app.get('/discuss/:id', index.discuss);
   app.post('/books', index.addbooks);
   app.post('/create/author', index.createAuthor);
-
+  app.post('/users', index.users);
 }

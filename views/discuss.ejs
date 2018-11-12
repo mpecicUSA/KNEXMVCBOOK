@@ -3,12 +3,39 @@
   <head>
     <meta charset="utf-8">
     <title>Discuss a book</title>
+    <style media="screen">
+      *{
+        text-align:center;
+      }
+      img{
+        max-height: 250px;
+        max-width: 250px
+      }
+      .card{
+        margin: 1em;
+      }
+    </style>
   </head>
   <body>
-    <% console.log(users) %>
-    <h1>Title: <%=users.title %></h1>
-    <img src="<%=users.img_url %>" alt="">
-    <p>Name of commenter: <%=users.name %></p>
-    <p>Comment of user: <%=users.comment %></p>
+    <%= console.log(books[0]) %>
+    <h1>Title: <%= books[0].title %></h1>
+    <img src="<%=books[0].img_url %>" alt="">
+    <p>Breif intro to book: <%= books[0].description %> </p>
+    <% if(books.length>0){
+        for(let i=0; i<books.length; i++) 
+          { %>
+    <p>Name of commenter: <%= books[i].name %></p>
+    <p>Comment of user: <%= books[i].comment %></p>
+    <% } }%>
+    <form action="/users" method="post">
+      <div class="card">
+        <input type="text" name="name" placeholder="Name">
+      </div>
+      <div class="card">
+        <textarea type="text" name="comment">Comment </textarea>
+      </div>
+      <input type="text" name="book_id" value="<%=books[0].book_id%>">
+      <button type="submit">Submit your comment</button>
+    </form>
   </body>
 </html>
